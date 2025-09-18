@@ -2,7 +2,7 @@
 {
     public static class ValidationConstants
     {
-        public const string EMAIL_REGEX = @"^\\S+@\\S+\\.\\S+$";
+        public const string EMAIL_REGEX = @"^[\w.-]+@[\w.-]+\.[A-Za-z]{2,}$";
 
         public const int EMAIL_MIN_LENGTH = 3;
 
