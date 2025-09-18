@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="15.0.1" />
+    <PackageReference Include="MediatR" Version="13.0.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.14.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\UserDataService.Data.Models\UserDataAccessService.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\UserDataService.Data\UserDataAccessService.Data.csproj" />
+    <ProjectReference Include="..\UserDataAccessService.Handlers.Queries\UserDataAccessService.Handlers.Queries.csproj" />
+  </ItemGroup>
+
+</Project>

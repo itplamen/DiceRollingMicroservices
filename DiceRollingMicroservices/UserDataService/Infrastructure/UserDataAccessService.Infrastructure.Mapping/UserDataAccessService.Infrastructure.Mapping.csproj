@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="15.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\UserDataService.Data.Models\UserDataAccessService.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Handlers\UserDataAccessService.Handlers.Commands\UserDataAccessService.Handlers.Commands.csproj" />
+  </ItemGroup>
+
+</Project>
