@@ -1,7 +1,10 @@
 ﻿namespace UserDataAccessService.Handlers.Commands.Token
 {
-    using MediatR;
+    using System.Threading;
+    using System.Threading.Tasks;
 
+    using MediatR;
+    
     using UserDataAccessService.Data.Contracts;
     using UserDataAccessService.Data.Models;
 
@@ -14,10 +17,12 @@
             this.repository = repository;
         }
 
-        public async Task Handle(RevokeTokenCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(RevokeTokenCommand request, CancellationToken cancellationToken)
         {
             repository.Delete(request.RefreshToken);
             await repository.SaveChangesAsync(cancellationToken);
+
+            return Unit.Value;
         }
     }
 }
