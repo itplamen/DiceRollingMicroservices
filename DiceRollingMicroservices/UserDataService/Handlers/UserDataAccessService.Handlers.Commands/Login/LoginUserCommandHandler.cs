@@ -35,7 +35,7 @@
 
                 if (isPasswordValid)
                 {
-                    TokenResponse response = await mediator.Send(new CreateTokenCommand() { Email = request.Email, UserId = user.Id });
+                    TokenResponse response = await mediator.Send(new CreateAccessTokenCommand(user.Id, request.Email));
                     return response;
                 }
 

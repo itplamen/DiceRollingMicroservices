@@ -6,6 +6,6 @@
 
     public class LogoutUserCommand : IRequest<BaseResponse>
     {
-        public string Token { get; set; }
+        public string RefreshToken { get; set; }
     }
 }

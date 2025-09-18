@@ -6,6 +6,11 @@
 
     public class RevokeTokenCommand : IRequest
     {
+        public RevokeTokenCommand(RefreshToken refreshToken)
+        {
+            RefreshToken = refreshToken;
+        }
+
         public RefreshToken RefreshToken { get; set; }
     }
 }

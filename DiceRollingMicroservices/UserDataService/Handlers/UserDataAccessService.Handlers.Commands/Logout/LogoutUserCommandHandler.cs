@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
 
     using MediatR;
-    
+
     using UserDataAccessService.Data.Models;
     using UserDataAccessService.Handlers.Commands.Response;
     using UserDataAccessService.Handlers.Commands.Token;
@@ -20,11 +20,11 @@
 
         public async Task<BaseResponse> Handle(LogoutUserCommand request, CancellationToken cancellationToken)
         {
-            RefreshToken refreshToken = await mediator.Send(new GetTokenQuery() { Token = request.Token });
+            RefreshToken refreshToken = await mediator.Send(new GetTokenQuery() { Token = request.RefreshToken });
 
             if (refreshToken != null)
             {
-                await mediator.Send(new RevokeTokenCommand() { RefreshToken = refreshToken });
+                await mediator.Send(new RevokeTokenCommand(refreshToken));
 
                 return new BaseResponse();
             }
