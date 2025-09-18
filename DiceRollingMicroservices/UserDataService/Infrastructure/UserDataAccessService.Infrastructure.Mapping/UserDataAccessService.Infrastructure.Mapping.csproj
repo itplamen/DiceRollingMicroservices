@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Api\UserDataAccessService.Api.Models\UserDataAccessService.Api.Models.csproj" />
     <ProjectReference Include="..\..\Data\UserDataService.Data.Models\UserDataAccessService.Data.Models.csproj" />
     <ProjectReference Include="..\..\Handlers\UserDataAccessService.Handlers.Commands\UserDataAccessService.Handlers.Commands.csproj" />
   </ItemGroup>
