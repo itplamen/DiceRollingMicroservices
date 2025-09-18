@@ -1,0 +1,19 @@
+﻿namespace UserDataAccessService.Infrastructure.Validation
+{
+    public static class ValidationConstants
+    {
+        public const string EMAIL_REGEX = @"^\\S+@\\S+\\.\\S+$";
+
+        public const int EMAIL_MIN_LENGTH = 3;
+
+        public const int EMAIL_MAX_LENGTH = 100;
+
+        public const int PASSWORD_MIN_LENGTH = 6;
+
+        public const int PASSWORD_MAX_LENGTH = 100;
+
+        public const string PASSWORD_REGEX = "^(?=.*[A-Z])(?=.*\\d).{6,}$";
+
+        public const int FULL_NAME_MAX_LENGTH = 50;
+    }
+}
