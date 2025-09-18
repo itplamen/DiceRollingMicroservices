@@ -9,6 +9,7 @@
     using UserDataAccessService.Data.Models;
     using UserDataAccessService.Handlers.Commands.Response;
     using UserDataAccessService.Handlers.Commands.Token;
+    using UserDataAccessService.Handlers.Queries.Token;
 
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, TokenResponse>
     {
@@ -25,20 +26,27 @@
         {
             User user = await userManager.FindByEmailAsync(request.Email);
 
-            if (user != null)
+            if (user == null)
             {
-                bool isPasswordValid = await userManager.CheckPasswordAsync(user, request.Password);
+                return new TokenResponse("Username does not exists");
+            }
 
-                if (isPasswordValid)
-                {
-                    TokenResponse response = await mediator.Send(new CreateAccessTokenCommand(user.Id, request.Email));
-                    return response;
-                }
+            bool isPasswordValid = await userManager.CheckPasswordAsync(user, request.Password);
 
+            if (!isPasswordValid)
+            {
                 return new TokenResponse("Invalid password");
             }
 
-            return new TokenResponse("Username does not exists");
+            RefreshToken refreshToken = await mediator.Send(new GetTokenQuery(user.Id));
+
+            if (refreshToken != null)
+            {
+                await mediator.Send(new RevokeTokenCommand(refreshToken));
+            }
+
+            TokenResponse response = await mediator.Send(new CreateAccessTokenCommand(user.Id, request.Email));
+            return response;
         }
     }
 }
