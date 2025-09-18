@@ -10,6 +10,11 @@
     {
         private readonly IMediator mediator;
 
+        public CreateRefreshTokenCommandHandler(IMediator mediator)
+        {
+            this.mediator = mediator;
+        }
+
         public async Task<TokenResponse> Handle(CreateRefreshTokenCommand request, CancellationToken cancellationToken)
         {
             RefreshToken refreshToken = await mediator.Send(new GetTokenQuery() { Token = request.RefreshToken }, cancellationToken);

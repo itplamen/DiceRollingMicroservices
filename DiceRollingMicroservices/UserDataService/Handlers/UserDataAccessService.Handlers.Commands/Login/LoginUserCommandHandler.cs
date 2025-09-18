@@ -2,8 +2,6 @@
 {
     using System.Threading.Tasks;
 
-    using AutoMapper;
-    
     using MediatR;
     
     using Microsoft.AspNetCore.Identity;
@@ -14,13 +12,11 @@
 
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, TokenResponse>
     {
-        private readonly IMapper mapper;
         private readonly IMediator mediator;
         private readonly UserManager<User> userManager;
 
-        public LoginUserCommandHandler(IMapper mapper, IMediator mediator, UserManager<User> userManager)
+        public LoginUserCommandHandler(IMediator mediator, UserManager<User> userManager)
         {
-            this.mapper = mapper;
             this.mediator = mediator;
             this.userManager = userManager;
         }

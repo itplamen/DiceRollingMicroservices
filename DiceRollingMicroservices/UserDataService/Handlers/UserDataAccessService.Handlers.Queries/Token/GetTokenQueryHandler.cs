@@ -18,7 +18,7 @@
 
         public async Task<RefreshToken> Handle(GetTokenQuery request, CancellationToken cancellationToken)
         {
-           var refreshToken = await repository.Filter()
+            RefreshToken refreshToken = await repository.Filter()
                 .Include(x => x.User)
                 .FirstOrDefaultAsync(x => 
                     x.Token == request.Token && x.ExpiryDate > DateTime.UtcNow && x.DeletedOn == null, 
