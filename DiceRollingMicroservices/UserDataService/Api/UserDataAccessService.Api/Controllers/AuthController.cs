@@ -1,14 +1,16 @@
 ﻿namespace UserDataAccessService.Api.Controllers
 {
+    using System.Threading.Tasks;
+
     using AutoMapper;
     
     using MediatR;
     
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
     
     using UserDataAccessService.Api.Models;
     using UserDataAccessService.Handlers.Commands.Login;
+    using UserDataAccessService.Handlers.Commands.Logout;
     using UserDataAccessService.Handlers.Commands.Register;
     using UserDataAccessService.Handlers.Commands.Response;
     using UserDataAccessService.Handlers.Commands.Token;
@@ -70,7 +72,7 @@
         {
             if (ModelState.IsValid)
             {
-                CreateTokenCommand command = mapper.Map<CreateTokenCommand>(request);
+                CreateRefreshTokenCommand command = mapper.Map<CreateRefreshTokenCommand>(request);
                 TokenResponse response = await mediator.Send(command);
 
                 if (response.IsSuccess)
@@ -89,7 +91,7 @@
         {
             if (ModelState.IsValid)
             {
-                RevokeTokenCommand command = mapper.Map<RevokeTokenCommand>(request);
+                LogoutUserCommand command = mapper.Map<LogoutUserCommand>(request);
                 await mediator.Send(command);
 
                 return Ok();
