@@ -20,7 +20,7 @@
 
         public async Task<BaseResponse> Handle(LogoutUserCommand request, CancellationToken cancellationToken)
         {
-            RefreshToken refreshToken = await mediator.Send(new GetTokenQuery() { Token = request.RefreshToken });
+            RefreshToken refreshToken = await mediator.Send(new GetTokenQuery(request.RefreshToken));
 
             if (refreshToken != null)
             {

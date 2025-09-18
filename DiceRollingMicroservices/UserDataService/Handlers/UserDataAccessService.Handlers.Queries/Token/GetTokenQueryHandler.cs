@@ -18,11 +18,21 @@
 
         public async Task<RefreshToken> Handle(GetTokenQuery request, CancellationToken cancellationToken)
         {
-            RefreshToken refreshToken = await repository.Filter()
+            IQueryable<RefreshToken> query = repository.Filter()
                 .Include(x => x.User)
-                .FirstOrDefaultAsync(x => 
-                    x.Token == request.Token && x.ExpiryDate > DateTime.UtcNow && x.DeletedOn == null, 
-                    cancellationToken);
+                .Where(x => x.ExpiryDate > DateTime.UtcNow && x.DeletedOn == null);
+
+            if (!string.IsNullOrEmpty(request.Token))
+            {
+                query = query.Where(x => x.Token == request.Token);
+            }
+
+            if (request.UserId > 0)
+            {
+                query = query.Where(x => x.UserId == request.UserId);
+            }
+
+            RefreshToken refreshToken = await query.FirstOrDefaultAsync(cancellationToken);
 
             return refreshToken;
         }

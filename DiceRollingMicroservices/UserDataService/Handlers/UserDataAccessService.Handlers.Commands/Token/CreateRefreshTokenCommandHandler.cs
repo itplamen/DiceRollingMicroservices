@@ -17,7 +17,7 @@
 
         public async Task<TokenResponse> Handle(CreateRefreshTokenCommand request, CancellationToken cancellationToken)
         {
-            RefreshToken refreshToken = await mediator.Send(new GetTokenQuery() { Token = request.RefreshToken }, cancellationToken);
+            RefreshToken refreshToken = await mediator.Send(new GetTokenQuery(request.RefreshToken), cancellationToken);
 
             if (refreshToken != null)
             {
