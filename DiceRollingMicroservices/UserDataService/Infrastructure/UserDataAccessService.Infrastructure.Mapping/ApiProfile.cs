@@ -4,6 +4,7 @@
 
     using UserDataAccessService.Api.Models;
     using UserDataAccessService.Handlers.Commands.Login;
+    using UserDataAccessService.Handlers.Commands.Logout;
     using UserDataAccessService.Handlers.Commands.Register;
     using UserDataAccessService.Handlers.Commands.Token;
 
@@ -23,6 +24,9 @@
                 .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password));
 
             CreateMap<RefreshTokenRequest, CreateRefreshTokenCommand>()
+                .ForMember(dest => dest.RefreshToken, opt => opt.MapFrom(src => src.RefreshToken));
+
+            CreateMap<RefreshTokenRequest, LogoutUserCommand>()
                 .ForMember(dest => dest.RefreshToken, opt => opt.MapFrom(src => src.RefreshToken));
 
             CreateMap<RefreshTokenRequest, RevokeTokenCommand>()

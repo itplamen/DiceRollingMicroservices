@@ -61,7 +61,6 @@
                 }
 
                 return Unauthorized(response);
-
             }
 
             return BadRequest(ModelState);
@@ -92,9 +91,9 @@
             if (ModelState.IsValid)
             {
                 LogoutUserCommand command = mapper.Map<LogoutUserCommand>(request);
-                await mediator.Send(command);
+                BaseResponse response = await mediator.Send(command);
 
-                return Ok();
+                return Ok(response);
             }
 
             return BadRequest(ModelState);

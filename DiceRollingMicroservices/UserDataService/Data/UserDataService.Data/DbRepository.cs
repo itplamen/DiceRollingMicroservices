@@ -28,9 +28,17 @@
 
         public async Task<IEnumerable<TEntity>> GetAllAsync() => await dbSet.Where(x => !x.DeletedOn.HasValue).ToListAsync();
 
-        public async Task AddAsync(TEntity item, CancellationToken cancellationToken) => await dbSet.AddAsync(item, cancellationToken);
+        public async Task AddAsync(TEntity item, CancellationToken cancellationToken)
+        {
+            item.CreatedOn = DateTime.UtcNow;
+            await dbSet.AddAsync(item, cancellationToken);
+        }
 
-        public void Update(TEntity item) => dbSet.Update(item);
+        public void Update(TEntity item)
+        {
+            item.ModifiedOn = DateTime.UtcNow;
+            dbSet.Update(item);
+        }
 
         public void Delete(TEntity item)
         {
