@@ -7,7 +7,7 @@
     using UserDataAccessService.Handlers.Commands.Register;
     using UserDataAccessService.Handlers.Commands.Token;
 
-    public sealed class ApiProfile : Profile
+    public class ApiProfile : Profile
     {
         public ApiProfile()
         {

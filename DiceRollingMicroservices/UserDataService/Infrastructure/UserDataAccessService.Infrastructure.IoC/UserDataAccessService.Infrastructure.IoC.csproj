@@ -6,4 +6,15 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Handlers\UserDataAccessService.Handlers.Commands\UserDataAccessService.Handlers.Commands.csproj" />
+    <ProjectReference Include="..\..\Handlers\UserDataAccessService.Handlers.Queries\UserDataAccessService.Handlers.Queries.csproj" />
+    <ProjectReference Include="..\UserDataAccessService.Infrastructure.Mapping\UserDataAccessService.Infrastructure.Mapping.csproj" />
+  </ItemGroup>
+
 </Project>
