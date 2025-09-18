@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserDataAccessService.Api",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserDataAccessService.Api.Models", "UserDataService\Api\UserDataAccessService.Api.Models\UserDataAccessService.Api.Models.csproj", "{83A0C163-FBB3-4B6F-84E0-D69EED23DC79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserDataAccessService.Infrastructure.IoC", "UserDataService\Infrastructure\UserDataAccessService.Infrastructure.IoC\UserDataAccessService.Infrastructure.IoC.csproj", "{E4A41744-8F8D-4A9B-AD19-6478BD08DF53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{83A0C163-FBB3-4B6F-84E0-D69EED23DC79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83A0C163-FBB3-4B6F-84E0-D69EED23DC79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83A0C163-FBB3-4B6F-84E0-D69EED23DC79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4A41744-8F8D-4A9B-AD19-6478BD08DF53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4A41744-8F8D-4A9B-AD19-6478BD08DF53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4A41744-8F8D-4A9B-AD19-6478BD08DF53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4A41744-8F8D-4A9B-AD19-6478BD08DF53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +85,7 @@ Global
 		{C6561811-65FD-4B09-AC2F-D351F56D074D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{B7785093-2854-4EDE-9D36-D76E17EE5EF9} = {C6561811-65FD-4B09-AC2F-D351F56D074D}
 		{83A0C163-FBB3-4B6F-84E0-D69EED23DC79} = {C6561811-65FD-4B09-AC2F-D351F56D074D}
+		{E4A41744-8F8D-4A9B-AD19-6478BD08DF53} = {E2F5EBCC-A859-476E-84E0-EF9573166CA2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43E0FF2F-C8A1-4E10-9C4A-C925C2EDA499}
