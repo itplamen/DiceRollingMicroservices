@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserDataAccessService.Api.M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserDataAccessService.Infrastructure.IoC", "UserDataService\Infrastructure\UserDataAccessService.Infrastructure.IoC\UserDataAccessService.Infrastructure.IoC.csproj", "{E4A41744-8F8D-4A9B-AD19-6478BD08DF53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserDataAccessService.Infrastructure.Validation", "UserDataService\Infrastructure\UserDataAccessService.Infrastructure.Validation\UserDataAccessService.Infrastructure.Validation.csproj", "{E4D378F3-A701-4E7E-9462-AB76EC29C79F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{E4A41744-8F8D-4A9B-AD19-6478BD08DF53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4A41744-8F8D-4A9B-AD19-6478BD08DF53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4A41744-8F8D-4A9B-AD19-6478BD08DF53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4D378F3-A701-4E7E-9462-AB76EC29C79F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4D378F3-A701-4E7E-9462-AB76EC29C79F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4D378F3-A701-4E7E-9462-AB76EC29C79F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4D378F3-A701-4E7E-9462-AB76EC29C79F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{B7785093-2854-4EDE-9D36-D76E17EE5EF9} = {C6561811-65FD-4B09-AC2F-D351F56D074D}
 		{83A0C163-FBB3-4B6F-84E0-D69EED23DC79} = {C6561811-65FD-4B09-AC2F-D351F56D074D}
 		{E4A41744-8F8D-4A9B-AD19-6478BD08DF53} = {E2F5EBCC-A859-476E-84E0-EF9573166CA2}
+		{E4D378F3-A701-4E7E-9462-AB76EC29C79F} = {E2F5EBCC-A859-476E-84E0-EF9573166CA2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43E0FF2F-C8A1-4E10-9C4A-C925C2EDA499}

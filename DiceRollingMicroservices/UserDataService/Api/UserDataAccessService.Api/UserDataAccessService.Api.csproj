@@ -7,11 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="15.0.1" />
     <PackageReference Include="MediatR" Version="13.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Handlers\UserDataAccessService.Handlers.Commands\UserDataAccessService.Handlers.Commands.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\UserDataAccessService.Infrastructure.Validation\UserDataAccessService.Infrastructure.Validation.csproj" />
     <ProjectReference Include="..\UserDataAccessService.Api.Models\UserDataAccessService.Api.Models.csproj" />
   </ItemGroup>
 
