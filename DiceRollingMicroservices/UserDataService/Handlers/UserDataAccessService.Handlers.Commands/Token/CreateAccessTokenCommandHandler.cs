@@ -15,18 +15,18 @@
     using UserDataAccessService.Data.Models;
     using UserDataAccessService.Handlers.Commands.Response;
 
-    public class CreateTokenCommandHandler : IRequestHandler<CreateTokenCommand, TokenResponse>
+    public class CreateAccessTokenCommandHandler : IRequestHandler<CreateAccessTokenCommand, TokenResponse>
     {
         private readonly IConfiguration configuration;
         private readonly IRepository<RefreshToken> repository;
 
-        public CreateTokenCommandHandler(IConfiguration configuration, IRepository<RefreshToken> repository)
+        public CreateAccessTokenCommandHandler(IConfiguration configuration, IRepository<RefreshToken> repository)
         {
             this.configuration = configuration;
             this.repository = repository;
         }
 
-        public async Task<TokenResponse> Handle(CreateTokenCommand request, CancellationToken cancellationToken)
+        public async Task<TokenResponse> Handle(CreateAccessTokenCommand request, CancellationToken cancellationToken)
         {
             DateTime expiration = DateTime.UtcNow.AddMinutes(int.Parse(configuration["Jwt:TokenValidityMins"]));
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
