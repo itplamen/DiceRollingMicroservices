@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="11.0.0" />
+    <PackageReference Include="AutoMapper" Version="15.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\OperativeService.Data.Models\OperativeService.Data.Models.csproj" />
-    <ProjectReference Include="..\..\Data\OperativeService.Data\OperativeService.Data.csproj" />
+    <ProjectReference Include="..\..\Handlers\OperativeService.Handlers.Commands\OperativeService.Handlers.Commands.csproj" />
   </ItemGroup>
 
 </Project>
