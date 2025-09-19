@@ -9,6 +9,8 @@
 
         public int RoundNumber { get; set; }
 
+        public string GameId { get; set; }
+
         public ICollection<RollResult> Results { get; set; } 
     }
 }
