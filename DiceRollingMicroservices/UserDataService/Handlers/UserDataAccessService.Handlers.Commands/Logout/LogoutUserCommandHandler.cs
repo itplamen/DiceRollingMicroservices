@@ -1,11 +1,11 @@
 ﻿namespace UserDataAccessService.Handlers.Commands.Logout
 {
     using System.Threading.Tasks;
-
+   
     using MediatR;
 
+    using DiceRollingMicroservices.Common.Models.Response;
     using UserDataAccessService.Data.Models;
-    using UserDataAccessService.Handlers.Commands.Response;
     using UserDataAccessService.Handlers.Commands.Token;
     using UserDataAccessService.Handlers.Queries.Token;
 

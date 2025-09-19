@@ -1,5 +1,7 @@
 ﻿namespace UserDataAccessService.Handlers.Commands.Response
 {
+    using DiceRollingMicroservices.Common.Models.Response;
+
     public class TokenResponse : BaseResponse
     {
         public TokenResponse() { }

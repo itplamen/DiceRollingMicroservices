@@ -4,6 +4,7 @@
     
     using Microsoft.Extensions.DependencyInjection;
 
+    using DiceRollingMicroservices.Common.Models.Response;
     using UserDataAccessService.Data.Models;
     using UserDataAccessService.Handlers.Commands.Login;
     using UserDataAccessService.Handlers.Commands.Logout;

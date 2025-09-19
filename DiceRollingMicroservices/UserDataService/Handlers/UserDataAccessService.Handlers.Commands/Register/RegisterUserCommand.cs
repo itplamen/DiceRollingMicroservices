@@ -2,7 +2,7 @@
 {
     using MediatR;
 
-    using UserDataAccessService.Handlers.Commands.Response;
+    using DiceRollingMicroservices.Common.Models.Response;
 
     public class RegisterUserCommand  : IRequest<BaseResponse>
     {

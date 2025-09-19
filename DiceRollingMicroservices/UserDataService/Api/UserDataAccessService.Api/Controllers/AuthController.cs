@@ -7,7 +7,8 @@
     using MediatR;
     
     using Microsoft.AspNetCore.Mvc;
-    
+
+    using DiceRollingMicroservices.Common.Models.Response;
     using UserDataAccessService.Api.Models;
     using UserDataAccessService.Handlers.Commands.Login;
     using UserDataAccessService.Handlers.Commands.Logout;

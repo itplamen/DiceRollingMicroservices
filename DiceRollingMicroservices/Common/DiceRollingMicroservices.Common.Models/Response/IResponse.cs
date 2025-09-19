@@ -1,4 +1,4 @@
-﻿namespace UserDataAccessService.Handlers.Commands.Contracts
+﻿namespace DiceRollingMicroservices.Common.Models.Response
 {
     public interface IResponse
     {

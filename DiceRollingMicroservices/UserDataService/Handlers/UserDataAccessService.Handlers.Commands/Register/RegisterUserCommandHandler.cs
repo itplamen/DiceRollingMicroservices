@@ -1,14 +1,14 @@
 ﻿namespace UserDataAccessService.Handlers.Commands.Register
 {
     using AutoMapper;
-
+    
     using MediatR;
 
     using Microsoft.AspNetCore.Identity;
 
+    using DiceRollingMicroservices.Common.Models.Response;
     using UserDataAccessService.Data.Models;
-    using UserDataAccessService.Handlers.Commands.Response;
-
+    
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, BaseResponse>
     {
         private readonly IMapper mapper;

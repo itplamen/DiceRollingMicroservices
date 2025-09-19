@@ -1,7 +1,5 @@
-﻿namespace UserDataAccessService.Handlers.Commands.Response
+﻿namespace DiceRollingMicroservices.Common.Models.Response
 {
-    using UserDataAccessService.Handlers.Commands.Contracts;
-
     public class BaseResponse : IResponse
     {
         public BaseResponse() { }
