@@ -59,6 +59,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiceRollingMicroservices.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperativeService.Infrastructure.Utils", "OperativeService\Infrastructure\OperativeService.Infrastructure.Utils\OperativeService.Infrastructure.Utils.csproj", "{1330CCAA-86F0-4FD7-9EFD-65AA71AFC30B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperativeService.Api.Models", "OperativeService\Api\OperativeService.Api.Models\OperativeService.Api.Models.csproj", "{672A2452-0580-44C0-9777-B8F3ACCAD353}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +135,10 @@ Global
 		{1330CCAA-86F0-4FD7-9EFD-65AA71AFC30B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1330CCAA-86F0-4FD7-9EFD-65AA71AFC30B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1330CCAA-86F0-4FD7-9EFD-65AA71AFC30B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{672A2452-0580-44C0-9777-B8F3ACCAD353}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{672A2452-0580-44C0-9777-B8F3ACCAD353}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{672A2452-0580-44C0-9777-B8F3ACCAD353}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{672A2452-0580-44C0-9777-B8F3ACCAD353}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -163,6 +169,7 @@ Global
 		{4B9BFCCF-6B17-44AB-8E71-1A30CE9356B9} = {C7AEDC0C-C05D-4CD9-A4FD-BF21CE0FBF6B}
 		{AE61AE7C-3EBF-4C17-B776-93582787FAF5} = {D9D51BF0-840F-4C4B-A4F4-D42BBC02BAFC}
 		{1330CCAA-86F0-4FD7-9EFD-65AA71AFC30B} = {C7AEDC0C-C05D-4CD9-A4FD-BF21CE0FBF6B}
+		{672A2452-0580-44C0-9777-B8F3ACCAD353} = {E58A1DDA-D645-46F4-9CD5-83FCFA2A8B92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43E0FF2F-C8A1-4E10-9C4A-C925C2EDA499}
