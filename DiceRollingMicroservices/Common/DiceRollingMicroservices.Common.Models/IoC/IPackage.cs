@@ -1,4 +1,4 @@
-﻿namespace UserDataAccessService.Infrastructure.IoC.Contracts
+﻿namespace DiceRollingMicroservices.Common.Models.IoC
 {
     using Microsoft.Extensions.DependencyInjection;
 

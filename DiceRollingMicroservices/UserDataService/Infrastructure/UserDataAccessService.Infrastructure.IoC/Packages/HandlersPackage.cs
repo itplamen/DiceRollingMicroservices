@@ -4,6 +4,7 @@
     
     using Microsoft.Extensions.DependencyInjection;
 
+    using DiceRollingMicroservices.Common.Models.IoC;
     using DiceRollingMicroservices.Common.Models.Response;
     using UserDataAccessService.Data.Models;
     using UserDataAccessService.Handlers.Commands.Login;
@@ -12,7 +13,6 @@
     using UserDataAccessService.Handlers.Commands.Response;
     using UserDataAccessService.Handlers.Commands.Token;
     using UserDataAccessService.Handlers.Queries.Token;
-    using UserDataAccessService.Infrastructure.IoC.Contracts;
 
     public sealed class HandlersPackage : IPackage
     {

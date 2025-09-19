@@ -3,7 +3,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    using UserDataAccessService.Infrastructure.IoC.Contracts;
+    using DiceRollingMicroservices.Common.Models.IoC;
     using UserDataAccessService.Infrastructure.IoC.Packages;
 
     public static class ContainerConfig

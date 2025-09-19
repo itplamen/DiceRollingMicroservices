@@ -7,10 +7,10 @@
     using MediatR;
     
     using Microsoft.Extensions.DependencyInjection;
-    
+
+    using DiceRollingMicroservices.Common.Models.IoC;
     using UserDataAccessService.Handlers.Commands.Login;
     using UserDataAccessService.Handlers.Queries.Token;
-    using UserDataAccessService.Infrastructure.IoC.Contracts;
     using UserDataAccessService.Infrastructure.Mapping;
 
     public sealed class ApiPackage : IPackage

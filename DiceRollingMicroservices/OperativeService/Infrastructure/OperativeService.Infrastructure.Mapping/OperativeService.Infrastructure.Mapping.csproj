@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Api\OperativeService.Api.Models\OperativeService.Api.Models.csproj" />
     <ProjectReference Include="..\..\Data\OperativeService.Data.Models\OperativeService.Data.Models.csproj" />
     <ProjectReference Include="..\..\Handlers\OperativeService.Handlers.Commands\OperativeService.Handlers.Commands.csproj" />
   </ItemGroup>
