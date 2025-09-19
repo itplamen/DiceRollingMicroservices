@@ -19,10 +19,8 @@
             IEnumerable<Die> diceSeed = GetDiceSeed();
             Seed(dice, diceSeed);
 
-            InitCollection<DieRoll>();
             InitCollection(Builders<Game>.IndexKeys.Ascending(x => x.Name));
             InitCollection(Builders<Round>.IndexKeys.Ascending(x => x.GameId).Ascending(x => x.RoundNumber));
-            InitCollection(Builders<RollResult>.IndexKeys.Ascending(x => x.UserId).Ascending(x => x.CreatedOn));
             InitCollection(Builders<User>.IndexKeys.Ascending(x => x.ExternalId), new CreateIndexOptions { Unique = true }); 
         }
 
