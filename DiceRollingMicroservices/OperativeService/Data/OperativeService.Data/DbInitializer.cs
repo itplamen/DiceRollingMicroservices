@@ -2,14 +2,13 @@
 {
     using MongoDB.Driver;
     
-    using OperativeService.Data.Contracts;
     using OperativeService.Data.Models;
 
     public sealed class DbInitializer
     {
-        private readonly IOperativeServiceDbContext dbContext;
+        private readonly OperativeServiceDbContext dbContext;
 
-        public DbInitializer(IOperativeServiceDbContext dbContext)
+        public DbInitializer(OperativeServiceDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
@@ -21,7 +20,6 @@
             Seed(dice, diceSeed);
 
             InitCollection<DieRoll>();
-            InitCollection<GameSettings>();
             InitCollection(Builders<Game>.IndexKeys.Ascending(x => x.Name));
             InitCollection(Builders<Round>.IndexKeys.Ascending(x => x.GameId).Ascending(x => x.RoundNumber));
             InitCollection(Builders<RollResult>.IndexKeys.Ascending(x => x.UserId).Ascending(x => x.CreatedOn));
