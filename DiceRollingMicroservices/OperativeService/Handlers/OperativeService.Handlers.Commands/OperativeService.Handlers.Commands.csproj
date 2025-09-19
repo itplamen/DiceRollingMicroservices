@@ -12,8 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\DiceRollingMicroservices.Common.Models\DiceRollingMicroservices.Common.Models.csproj" />
     <ProjectReference Include="..\..\Data\OperativeService.Data.Models\OperativeService.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\OperativeService.Data\OperativeService.Data.csproj" />
+    <ProjectReference Include="..\OperativeService.Handlers.Queries\OperativeService.Handlers.Queries.csproj" />
   </ItemGroup>
 
 </Project>
