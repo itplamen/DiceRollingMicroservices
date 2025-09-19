@@ -1,4 +1,7 @@
-﻿namespace OperativeService.Data.Models
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace OperativeService.Data.Models
 {
     public class Game : BaseModel
     {
@@ -10,7 +13,14 @@
 
         public string Name { get; set; }
 
-        public string GameSettingsId { get; set; }
+        [BsonRepresentation(BsonType.String)]
+        public DieType DieType { get; set; }
+
+        public int MaxUsers { get; set; }
+
+        public int MaxRounds { get; set; }
+
+        public int DicePerUser { get; set; }
 
         public ICollection<string> UserIds { get; set; }
 
