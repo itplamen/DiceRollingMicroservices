@@ -4,10 +4,10 @@
     
     using MediatR;
     
+    using DiceRollingMicroservices.Common.Models.Response;
     using OperativeService.Data.Contracts;
     using OperativeService.Data.Models;
-    using OperativeService.Handlers.Commands.Response;
-
+    
     public class CreateEntityCommandHandler<TCommand, TEntity> : IRequestHandler<TCommand, EntityResponse>
         where TCommand : IRequest<EntityResponse>
         where TEntity : BaseModel

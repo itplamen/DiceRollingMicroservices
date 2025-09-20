@@ -1,7 +1,5 @@
-﻿namespace OperativeService.Handlers.Commands.Response
+﻿namespace DiceRollingMicroservices.Common.Models.Response
 {
-    using DiceRollingMicroservices.Common.Models.Response;
-
     public class EntityResponse : BaseResponse
     {
         public EntityResponse() { }

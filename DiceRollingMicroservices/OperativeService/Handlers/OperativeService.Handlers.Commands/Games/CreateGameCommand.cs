@@ -2,9 +2,9 @@
 {
     using MediatR;
 
+    using DiceRollingMicroservices.Common.Models.Response;
     using OperativeService.Data.Models;
-    using OperativeService.Handlers.Commands.Response;
-
+    
     public class CreateGameCommand : IRequest<EntityResponse>
     {
         public string Name { get; set; }

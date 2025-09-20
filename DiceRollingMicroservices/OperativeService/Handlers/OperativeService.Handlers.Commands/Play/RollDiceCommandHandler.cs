@@ -1,9 +1,10 @@
 ﻿namespace OperativeService.Handlers.Commands.Play
 {
     using AutoMapper;
-    
+   
     using MediatR;
-    
+
+    using DiceRollingMicroservices.Common.Models.Response;
     using OperativeService.Data.Contracts;
     using OperativeService.Data.Models;
     using OperativeService.Handlers.Commands.Common;

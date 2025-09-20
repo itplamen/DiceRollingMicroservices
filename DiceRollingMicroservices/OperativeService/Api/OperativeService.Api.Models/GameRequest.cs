@@ -2,11 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class JoinGameRequest
+    public class GameRequest
     {
-        [Required]
-        public string UserId { get; set; }
-
         [Required]
         public string GameId { get; set; }
     }

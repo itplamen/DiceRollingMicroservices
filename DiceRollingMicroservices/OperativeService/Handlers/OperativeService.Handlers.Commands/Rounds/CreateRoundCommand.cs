@@ -1,9 +1,9 @@
 ﻿namespace OperativeService.Handlers.Commands.Rounds
 {
     using MediatR;
-    
+
+    using DiceRollingMicroservices.Common.Models.Response;
     using OperativeService.Data.Models;
-    using OperativeService.Handlers.Commands.Response;
 
     public class CreateRoundCommand : IRequest<EntityResponse>
     {

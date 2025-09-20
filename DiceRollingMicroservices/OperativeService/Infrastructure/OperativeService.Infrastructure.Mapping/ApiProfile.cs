@@ -16,12 +16,10 @@
                 .ForMember(dest => dest.DicePerUser, opt => opt.MapFrom(src => src.DicePerUser))
                 .ForMember(dest => dest.MaxRounds, opt => opt.MapFrom(src => src.MaxRounds))
                 .ForMember(dest => dest.MaxUsers, opt => opt.MapFrom(src => src.MaxUsers))
-                .ForMember(dest => dest.DieType, opt => opt.MapFrom(src => Enum.Parse<DieType>(src.DieType)))
-                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));
+                .ForMember(dest => dest.DieType, opt => opt.MapFrom(src => Enum.Parse<DieType>(src.DieType)));
 
-            CreateMap<JoinGameRequest, GameCommand>()
-                .ForMember(dest => dest.GameId, opt => opt.MapFrom(src => src.GameId))
-                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));
+            CreateMap<GameRequest, GameCommand>()
+                .ForMember(dest => dest.GameId, opt => opt.MapFrom(src => src.GameId));
         }
     }
 }
