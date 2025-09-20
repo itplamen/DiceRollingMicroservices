@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\OperativeService.Data\OperativeService.Data.csproj" />
     <ProjectReference Include="..\..\Handlers\OperativeService.Handlers.Commands\OperativeService.Handlers.Commands.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\OperativeService.Infrastructure.IoC\OperativeService.Infrastructure.IoC.csproj" />
     <ProjectReference Include="..\OperativeService.Api.Models\OperativeService.Api.Models.csproj" />
   </ItemGroup>
 

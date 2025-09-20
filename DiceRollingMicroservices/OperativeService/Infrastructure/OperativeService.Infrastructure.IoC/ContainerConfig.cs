@@ -1,6 +1,5 @@
 ﻿namespace OperativeService.Infrastructure.IoC
 {
-    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
     using DiceRollingMicroservices.Common.Models.IoC;
@@ -8,7 +7,7 @@
 
     public static class ContainerConfig
     {
-        public static void AddServices(this IServiceCollection services, IConfiguration configuration)
+        public static void AddServices(this IServiceCollection services)
         {
             IPackage[] packages =
             {
