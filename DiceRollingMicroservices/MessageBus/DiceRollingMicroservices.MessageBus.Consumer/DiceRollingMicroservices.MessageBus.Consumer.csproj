@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.9" />
+    <PackageReference Include="RabbitMQ.Client" Version="7.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\OperativeService\Handlers\OperativeService.Handlers.Commands\OperativeService.Handlers.Commands.csproj" />
+    <ProjectReference Include="..\DiceRollingMicroservices.MessageBus.Models\DiceRollingMicroservices.MessageBus.Models.csproj" />
+  </ItemGroup>
+
+</Project>

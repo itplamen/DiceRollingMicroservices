@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\DiceRollingMicroservices.Common.Models\DiceRollingMicroservices.Common.Models.csproj" />
+    <ProjectReference Include="..\..\..\MessageBus\DiceRollingMicroservices.MessageBus.Consumer\DiceRollingMicroservices.MessageBus.Consumer.csproj" />
     <ProjectReference Include="..\OperativeService.Infrastructure.Mapping\OperativeService.Infrastructure.Mapping.csproj" />
   </ItemGroup>
 

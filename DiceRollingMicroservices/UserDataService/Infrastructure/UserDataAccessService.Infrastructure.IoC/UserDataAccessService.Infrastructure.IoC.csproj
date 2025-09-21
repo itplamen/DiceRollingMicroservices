@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\MessageBus\DiceRollingMicroservices.MessageBus.Producer\DiceRollingMicroservices.MessageBus.Producer.csproj" />
     <ProjectReference Include="..\..\Handlers\UserDataAccessService.Handlers.Commands\UserDataAccessService.Handlers.Commands.csproj" />
     <ProjectReference Include="..\..\Handlers\UserDataAccessService.Handlers.Queries\UserDataAccessService.Handlers.Queries.csproj" />
     <ProjectReference Include="..\UserDataAccessService.Infrastructure.Mapping\UserDataAccessService.Infrastructure.Mapping.csproj" />

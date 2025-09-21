@@ -63,6 +63,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperativeService.Api.Models
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperativeService.Infrastructure.IoC", "OperativeService\Infrastructure\OperativeService.Infrastructure.IoC\OperativeService.Infrastructure.IoC.csproj", "{620E8857-80EC-4E25-9722-E191AC3799AF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MessageBus", "MessageBus", "{77A0B0EB-F4DF-4027-A8D5-BB8D4115D8D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiceRollingMicroservices.MessageBus.Consumer", "MessageBus\DiceRollingMicroservices.MessageBus.Consumer\DiceRollingMicroservices.MessageBus.Consumer.csproj", "{36D35481-20E0-4F09-8322-74D8CBBE0424}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiceRollingMicroservices.MessageBus.Producer", "MessageBus\DiceRollingMicroservices.MessageBus.Producer\DiceRollingMicroservices.MessageBus.Producer.csproj", "{51ED26FE-8051-456E-AF85-92AA03DD4495}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiceRollingMicroservices.MessageBus.Models", "MessageBus\DiceRollingMicroservices.MessageBus.Models\DiceRollingMicroservices.MessageBus.Models.csproj", "{FB7BFF6D-0EBE-4D91-B6F4-21F2AC53ED89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -145,6 +153,18 @@ Global
 		{620E8857-80EC-4E25-9722-E191AC3799AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{620E8857-80EC-4E25-9722-E191AC3799AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{620E8857-80EC-4E25-9722-E191AC3799AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36D35481-20E0-4F09-8322-74D8CBBE0424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36D35481-20E0-4F09-8322-74D8CBBE0424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36D35481-20E0-4F09-8322-74D8CBBE0424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36D35481-20E0-4F09-8322-74D8CBBE0424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51ED26FE-8051-456E-AF85-92AA03DD4495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51ED26FE-8051-456E-AF85-92AA03DD4495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51ED26FE-8051-456E-AF85-92AA03DD4495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51ED26FE-8051-456E-AF85-92AA03DD4495}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB7BFF6D-0EBE-4D91-B6F4-21F2AC53ED89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB7BFF6D-0EBE-4D91-B6F4-21F2AC53ED89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB7BFF6D-0EBE-4D91-B6F4-21F2AC53ED89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB7BFF6D-0EBE-4D91-B6F4-21F2AC53ED89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -177,6 +197,9 @@ Global
 		{1330CCAA-86F0-4FD7-9EFD-65AA71AFC30B} = {C7AEDC0C-C05D-4CD9-A4FD-BF21CE0FBF6B}
 		{672A2452-0580-44C0-9777-B8F3ACCAD353} = {E58A1DDA-D645-46F4-9CD5-83FCFA2A8B92}
 		{620E8857-80EC-4E25-9722-E191AC3799AF} = {C7AEDC0C-C05D-4CD9-A4FD-BF21CE0FBF6B}
+		{36D35481-20E0-4F09-8322-74D8CBBE0424} = {77A0B0EB-F4DF-4027-A8D5-BB8D4115D8D8}
+		{51ED26FE-8051-456E-AF85-92AA03DD4495} = {77A0B0EB-F4DF-4027-A8D5-BB8D4115D8D8}
+		{FB7BFF6D-0EBE-4D91-B6F4-21F2AC53ED89} = {77A0B0EB-F4DF-4027-A8D5-BB8D4115D8D8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43E0FF2F-C8A1-4E10-9C4A-C925C2EDA499}
