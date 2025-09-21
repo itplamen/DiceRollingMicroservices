@@ -49,14 +49,25 @@
                 Expression<Func<Game, bool>> filter = entityFilter.Filter(filterQuery);
 
                 IEnumerable<Game> games = await gamesRepository.FindAsync(filter, cancellationToken);
-                IEnumerable<Round> rounds = await roundRepository.FindAsync(x => games.Select(y => y.Id).Contains(x.GameId), cancellationToken);
+                IEnumerable<string> gameIds = games.Select(g => g.Id).ToList();
 
-                IEnumerable<string> otherUserIds = games.SelectMany(x => x.UserIds).Where(id => id != user.Id);
+                IEnumerable<Round> rounds = await roundRepository.FindAsync(x => gameIds.Contains(x.GameId), cancellationToken);
+
+                IEnumerable<string> otherUserIds = games.SelectMany(x => x.UserIds).Where(id => id != user.Id).Distinct();
                 IEnumerable<User> otherUsers = await usersRepository.FindAsync(x => otherUserIds.Contains(x.Id), cancellationToken);
 
                 IEnumerable<GameResponse> mappedGames = games.Select(game =>
                 {
-                    IEnumerable<Round> relatedRounds = rounds.Where(x => x.GameId == game.Id);
+                    IEnumerable<Round> relatedRounds = rounds.Where(x => x.GameId == game.Id && x.Results.Any(y => y.UserId == user.Id)).Select(x =>
+                    {
+                        return new Round()
+                        {
+                            Id = x.Id,
+                            RoundNumber = x.RoundNumber,
+                            GameId = x.GameId,
+                            Results = x.Results.Where(y => y.UserId == user.Id).ToList()
+                        };
+                    });
                     IEnumerable<User> relatedUsers = otherUsers.Where(x => game.UserIds.Contains(x.Id));
 
                     GameResponse gameResponse = mapper.Map<GameResponse>(game);
@@ -64,7 +75,7 @@
                     gameResponse.Rounds = mapper.Map<IEnumerable<RoundResponse>>(relatedRounds);
 
                     return gameResponse;
-                });
+                }).ToList();
 
 
                 IEnumerable<GameResponse> sorted = sorter.Sort(mappedGames, request.Sort, request.Desc);
