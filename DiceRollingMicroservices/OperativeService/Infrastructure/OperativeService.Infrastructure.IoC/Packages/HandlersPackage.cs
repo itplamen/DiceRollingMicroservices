@@ -13,6 +13,7 @@
     using OperativeService.Handlers.Commands.Play.Strategies;
     using OperativeService.Handlers.Commands.Response;
     using OperativeService.Handlers.Commands.Rounds;
+    using OperativeService.Handlers.Commands.Users;
     using OperativeService.Handlers.Queries.Users;
 
     public sealed class HandlersPackage : IPackage
@@ -21,6 +22,7 @@
         {
             services.AddScoped<IRequestHandler<CreateGameCommand, EntityResponse>, CreateEntityCommandHandler<CreateGameCommand, Game>>();
             services.AddScoped<IRequestHandler<CreateRoundCommand, EntityResponse>, CreateEntityCommandHandler<CreateRoundCommand, Round>>();
+            services.AddScoped<IRequestHandler<CreateUserComman, EntityResponse>, CreateEntityCommandHandler<CreateUserComman, User>>();
             services.AddScoped<IRequestHandler<GameCommand, BaseResponse>, JoinGameCommandHandler>();
             services.AddScoped<IRequestHandler<GameCommand, RollDiceResponse>, RollDiceCommandHandler>();
             services.AddScoped<IDiceRollerStrategy, SecureDiceRollerStrategy>();

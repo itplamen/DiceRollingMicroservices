@@ -31,7 +31,7 @@ builder.Services.AddIdentity<User, Role>(options =>
 .AddEntityFrameworkStores<UserDataServiceDbContext>()
 .AddDefaultTokenProviders();
 
-builder.Services.AddServices();
+builder.Services.AddServices(builder.Configuration);
 
 var app = builder.Build();
 
