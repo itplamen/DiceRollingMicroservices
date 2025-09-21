@@ -10,7 +10,7 @@
     using OperativeService.Handlers.Commands.Common;
     using OperativeService.Handlers.Queries.Games;
 
-    public class JoinGameCommandHandler : IRequestHandler<GameCommand, BaseResponse>
+    public class JoinGameCommandHandler : IRequestHandler<JoinGameCommand, BaseResponse>
     {
         private readonly IMapper mapper;
         private readonly IMediator mediator;
@@ -23,7 +23,7 @@
             this.repository = repository;
         }
 
-        public async Task<BaseResponse> Handle(GameCommand request, CancellationToken cancellationToken)
+        public async Task<BaseResponse> Handle(JoinGameCommand request, CancellationToken cancellationToken)
         {
             var query = mapper.Map<GetAvailableGamesQuery>(request);
             IEnumerable<Game> games = await mediator.Send(query);

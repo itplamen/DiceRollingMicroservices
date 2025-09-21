@@ -1,10 +1,10 @@
 ﻿namespace OperativeService.Handlers.Commands.Common
 {
     using MediatR;
-    
-    using OperativeService.Handlers.Commands.Response;
 
-    public class GameCommand : IRequest<RollDiceResponse>
+    using DiceRollingMicroservices.Common.Models.Response;
+
+    public class JoinGameCommand : IRequest<BaseResponse>
     {
         public string UserId { get; set; }
 

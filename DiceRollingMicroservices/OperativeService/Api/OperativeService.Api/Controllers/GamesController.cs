@@ -16,7 +16,8 @@
     using OperativeService.Handlers.Commands.Common;
     using OperativeService.Handlers.Commands.Games;
     using OperativeService.Handlers.Queries.Users;
-    
+    using OperativeService.Handlers.Commands.Play;
+
     [Authorize]
     [ApiController]
     [Route("/api/[controller]")]
@@ -44,7 +45,7 @@
         public Task<IActionResult> Join([FromBody] GameRequest request) =>
             HandleRequest(request, (req, userId) =>
             {
-                var command = mapper.Map<GameCommand>(req);
+                var command = mapper.Map<JoinGameCommand>(req);
                 command.UserId = userId;
                 return mediator.Send(command);
             });
@@ -53,7 +54,7 @@
         public Task<IActionResult> Play([FromBody] GameRequest request) =>
             HandleRequest(request, (req, userId) =>
             {
-                var command = mapper.Map<GameCommand>(req);
+                var command = mapper.Map<RollDiceCommand>(req);
                 command.UserId = userId;
 
                 return mediator.Send(command);

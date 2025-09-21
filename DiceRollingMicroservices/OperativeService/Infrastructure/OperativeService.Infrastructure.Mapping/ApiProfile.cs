@@ -6,6 +6,7 @@
     using OperativeService.Data.Models;
     using OperativeService.Handlers.Commands.Common;
     using OperativeService.Handlers.Commands.Games;
+    using OperativeService.Handlers.Commands.Play;
     using OperativeService.Handlers.Queries.Users;
 
     public class ApiProfile : Profile
@@ -19,7 +20,10 @@
                 .ForMember(dest => dest.MaxUsers, opt => opt.MapFrom(src => src.MaxUsers))
                 .ForMember(dest => dest.DieType, opt => opt.MapFrom(src => Enum.Parse<DieType>(src.DieType)));
 
-            CreateMap<GameRequest, GameCommand>()
+            CreateMap<GameRequest, JoinGameCommand>()
+                .ForMember(dest => dest.GameId, opt => opt.MapFrom(src => src.GameId));
+
+            CreateMap<GameRequest, RollDiceCommand>()
                 .ForMember(dest => dest.GameId, opt => opt.MapFrom(src => src.GameId));
 
             CreateMap<ProfileRequest, GetUserProfileQuery>()

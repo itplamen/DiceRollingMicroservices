@@ -7,14 +7,13 @@
     using DiceRollingMicroservices.Common.Models.Response;
     using OperativeService.Data.Contracts;
     using OperativeService.Data.Models;
-    using OperativeService.Handlers.Commands.Common;
     using OperativeService.Handlers.Commands.Play.Strategies;
     using OperativeService.Handlers.Commands.Response;
     using OperativeService.Handlers.Commands.Rounds;
     using OperativeService.Handlers.Queries.Games;
     using OperativeService.Handlers.Queries.Rounds;
 
-    public class RollDiceCommandHandler : IRequestHandler<GameCommand, RollDiceResponse>
+    public class RollDiceCommandHandler : IRequestHandler<RollDiceCommand, RollDiceResponse>
     {
         private const int ROUND_START = 1;
 
@@ -31,7 +30,7 @@
             this.diceRollerStrategy = diceRollerStrategy;
         }
 
-        public async Task<RollDiceResponse> Handle(GameCommand request, CancellationToken cancellationToken)
+        public async Task<RollDiceResponse> Handle(RollDiceCommand request, CancellationToken cancellationToken)
         {
             var query = mapper.Map<GetAvailableGamesQuery>(request);
             IEnumerable<Game> games = await mediator.Send(query);

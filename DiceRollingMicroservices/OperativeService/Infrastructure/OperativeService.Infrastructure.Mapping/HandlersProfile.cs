@@ -21,7 +21,7 @@
                 .ForMember(dest => dest.DicePerUser, opt => opt.MapFrom(src => src.DicePerUser))
                 .ForMember(dest => dest.UserIds, opt => opt.MapFrom(src => new HashSet<string>() { src.UserId }));
 
-            CreateMap<GameCommand, GetAvailableGamesQuery>()
+            CreateMap<JoinGameCommand, GetAvailableGamesQuery>()
                 .ForMember(dest => dest.GameId, opt => opt.MapFrom(src => src.GameId))
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));
 
