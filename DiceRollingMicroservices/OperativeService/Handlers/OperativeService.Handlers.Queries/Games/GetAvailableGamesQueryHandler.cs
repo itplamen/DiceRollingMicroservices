@@ -1,12 +1,12 @@
 ﻿namespace OperativeService.Handlers.Queries.Games
 {
     using System.Linq.Expressions;
-
+   
     using MediatR;
-    
+
+    using DiceRollingMicroservices.Common.Utils.Extensions;
     using OperativeService.Data.Contracts;
     using OperativeService.Data.Models;
-    using OperativeService.Infrastructure.Utils.Extensions;
 
     public class GetAvailableGamesQueryHandler : IRequestHandler<GetAvailableGamesQuery, IEnumerable<Game>>
     {

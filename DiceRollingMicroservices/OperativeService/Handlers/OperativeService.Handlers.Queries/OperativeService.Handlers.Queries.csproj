@@ -13,9 +13,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\DiceRollingMicroservices.Common.Models\DiceRollingMicroservices.Common.Models.csproj" />
+    <ProjectReference Include="..\..\..\Common\DiceRollingMicroservices.Common.Utils\DiceRollingMicroservices.Common.Utils.csproj" />
     <ProjectReference Include="..\..\Data\OperativeService.Data.Models\OperativeService.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\OperativeService.Data\OperativeService.Data.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\OperativeService.Infrastructure.Utils\OperativeService.Infrastructure.Utils.csproj" />
   </ItemGroup>
 
 </Project>

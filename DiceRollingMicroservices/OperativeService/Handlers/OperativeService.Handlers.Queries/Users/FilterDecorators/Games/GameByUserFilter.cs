@@ -1,10 +1,10 @@
 ﻿namespace OperativeService.Handlers.Queries.Users.FilterDecorators.Games
 {
     using System.Linq.Expressions;
-
+   
+    using DiceRollingMicroservices.Common.Utils.Extensions;
     using OperativeService.Data.Models;
     using OperativeService.Handlers.Queries.Users.FilterDecorators.Common;
-    using OperativeService.Infrastructure.Utils.Extensions;
 
     public class GameByUserFilter : IEntityFilter<Game>
     {

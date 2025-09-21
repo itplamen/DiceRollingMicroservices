@@ -1,4 +1,4 @@
-﻿namespace UserDataAccessService.Infrastructure.Validation
+﻿namespace DiceRollingMicroservices.Common.Utils.Validations
 {
     public static class ValidationConstants
     {

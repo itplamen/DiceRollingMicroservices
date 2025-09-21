@@ -19,7 +19,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Handlers\UserDataAccessService.Handlers.Commands\UserDataAccessService.Handlers.Commands.csproj" />
     <ProjectReference Include="..\..\Infrastructure\UserDataAccessService.Infrastructure.IoC\UserDataAccessService.Infrastructure.IoC.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\UserDataAccessService.Infrastructure.Validation\UserDataAccessService.Infrastructure.Validation.csproj" />
     <ProjectReference Include="..\UserDataAccessService.Api.Models\UserDataAccessService.Api.Models.csproj" />
   </ItemGroup>
 

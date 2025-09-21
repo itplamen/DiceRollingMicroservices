@@ -1,10 +1,10 @@
-﻿namespace OperativeService.Infrastructure.Utils.Extensions
+﻿namespace DiceRollingMicroservices.Common.Utils.Extensions
 {
     using System.Linq.Expressions;
 
     public static class PredicateBuilder
     {
-        public static Expression<Func<T, bool>> True<T>() => f => true;
+        public static Expression<Func<T, bool>> True<T>() => x => true;
 
         public static Expression<Func<T, bool>> And<T>(
             this Expression<Func<T, bool>> firstExpr,

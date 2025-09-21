@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UserDataAccessService.Infrastructure.Validation.Resources {
+namespace DiceRollingMicroservices.Common.Utils.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace UserDataAccessService.Infrastructure.Validation.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("UserDataAccessService.Infrastructure.Validation.Resources.ErrorMessages", typeof(ErrorMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DiceRollingMicroservices.Common.Utils.Resources.ErrorMessages", typeof(ErrorMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

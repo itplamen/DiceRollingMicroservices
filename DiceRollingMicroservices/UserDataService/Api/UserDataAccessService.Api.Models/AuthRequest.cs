@@ -2,8 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using UserDataAccessService.Infrastructure.Validation;
-    using UserDataAccessService.Infrastructure.Validation.Resources;
+    using DiceRollingMicroservices.Common.Utils.Resources;
+    using DiceRollingMicroservices.Common.Utils.Validations;
 
     public class AuthRequest
     {
