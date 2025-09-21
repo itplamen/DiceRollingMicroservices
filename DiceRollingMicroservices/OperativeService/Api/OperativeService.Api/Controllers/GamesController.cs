@@ -1,5 +1,6 @@
 ﻿namespace OperativeService.Api.Controllers
 {
+    using System;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
@@ -14,9 +15,8 @@
     using OperativeService.Api.Models;
     using OperativeService.Handlers.Commands.Common;
     using OperativeService.Handlers.Commands.Games;
-    using OperativeService.Handlers.Commands.Response;
     using OperativeService.Handlers.Queries.Users;
-
+    
     [Authorize]
     [ApiController]
     [Route("/api/[controller]")]
@@ -32,95 +32,58 @@
         }
 
         [HttpPost(nameof(Create))]
-        public async Task<IActionResult> Create([FromBody] CreateGameRequest request)
-        {
-            if (ModelState.IsValid)
+        public Task<IActionResult> Create([FromBody] CreateGameRequest request) =>
+            HandleRequest(request, (req, userId) =>
             {
-                EntityResponse userResponse = await GetUserId();
-
-                if (userResponse.IsSuccess)
-                {
-                    CreateGameCommand command = mapper.Map<CreateGameCommand>(request);
-                    command.UserId = userResponse.Id;
-
-                    EntityResponse response = await mediator.Send(command);
-
-                    if (response.IsSuccess)
-                    {
-                        return Ok(response);
-                    }
-
-                    return BadRequest(response);
-                }
-
-                return BadRequest(userResponse);
-            }
-
-            return BadRequest(ModelState);
-        }
+                var command = mapper.Map<CreateGameCommand>(req);
+                command.UserId = userId;
+                return mediator.Send(command);
+            });
 
         [HttpPost(nameof(Join))]
-        public async Task<IActionResult> Join([FromBody] GameRequest request)
-        {
-            if (ModelState.IsValid)
+        public Task<IActionResult> Join([FromBody] GameRequest request) =>
+            HandleRequest(request, (req, userId) =>
             {
-                EntityResponse userResponse = await GetUserId();
-
-                if (userResponse.IsSuccess)
-                {
-                    GameCommand command = mapper.Map<GameCommand>(request);
-                    command.UserId = userResponse.Id;
-
-                    BaseResponse response = await mediator.Send(command);
-
-                    if (response.IsSuccess)
-                    {
-                        return Ok(response);
-                    }
-
-                    return BadRequest(response);
-                }
-
-                return BadRequest(userResponse);
-            }
-
-            return BadRequest(ModelState);
-        }
+                var command = mapper.Map<GameCommand>(req);
+                command.UserId = userId;
+                return mediator.Send(command);
+            });
 
         [HttpPost(nameof(Play))]
-        public async Task<IActionResult> Play([FromBody] GameRequest request)
-        {
-            if (ModelState.IsValid)
+        public Task<IActionResult> Play([FromBody] GameRequest request) =>
+            HandleRequest(request, (req, userId) =>
             {
-                EntityResponse userResponse = await GetUserId();
+                var command = mapper.Map<GameCommand>(req);
+                command.UserId = userId;
 
-                if (userResponse.IsSuccess)
-                {
-                    GameCommand command = mapper.Map<GameCommand>(request);
-                    command.UserId = userResponse.Id;
+                return mediator.Send(command);
+            });
 
-                    RollDiceResponse response = await mediator.Send(command);
-
-                    if (response.IsSuccess)
-                    {
-                        return Ok(response);
-                    }
-
-                    return BadRequest(response);
-                }
-
-                return BadRequest(userResponse);
+        private async Task<IActionResult> HandleRequest<TRequest, TResponse>(TRequest request, Func<TRequest, string, Task<TResponse>> handler)
+            where TRequest : class
+            where TResponse : IResponse
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
             }
 
-            return BadRequest(ModelState);
-        }
-
-        private async Task<EntityResponse> GetUserId()
-        {
             int externalUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             EntityResponse userResponse = await mediator.Send(new GetUserQuery() { ExternalId = externalUserId });
 
-            return userResponse;
+            if (!userResponse.IsSuccess)
+            {
+                return BadRequest(userResponse);
+            }
+
+            TResponse response = await handler(request, userResponse.Id);
+
+            if (response.IsSuccess)
+            {
+                return Ok(response);
+            }
+
+            return BadRequest(response);
         }
     }
 }
