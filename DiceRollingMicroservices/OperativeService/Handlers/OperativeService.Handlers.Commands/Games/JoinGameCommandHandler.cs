@@ -1,35 +1,40 @@
 ﻿namespace OperativeService.Handlers.Commands.Games
 {
-    using AutoMapper;
-    
     using MediatR;
 
     using DiceRollingMicroservices.Common.Models.Response;
     using OperativeService.Data.Contracts;
     using OperativeService.Data.Models;
-    using OperativeService.Handlers.Commands.Common;
     using OperativeService.Handlers.Queries.Games;
 
     public class JoinGameCommandHandler : IRequestHandler<JoinGameCommand, BaseResponse>
     {
-        private readonly IMapper mapper;
         private readonly IMediator mediator;
         private readonly IRepository<Game> repository;
 
-        public JoinGameCommandHandler(IMapper mapper, IMediator mediator, IRepository<Game> repository)
+        public JoinGameCommandHandler(IMediator mediator, IRepository<Game> repository)
         {
-            this.mapper = mapper;
             this.mediator = mediator;
             this.repository = repository;
         }
 
         public async Task<BaseResponse> Handle(JoinGameCommand request, CancellationToken cancellationToken)
         {
-            var query = mapper.Map<GetAvailableGamesQuery>(request);
+            var query = new GetGamesQuery() { GameId = request.GameId };
             IEnumerable<Game> games = await mediator.Send(query);
             Game game = games.FirstOrDefault();
 
-            if (game != null)
+            if (game == null)
+            {
+                return new BaseResponse("Could not find the game!");
+            }
+
+            if (game.UserIds.Contains(request.UserId))
+            {
+                return new BaseResponse("The player has already joined the game!");
+            }
+
+            if (game.MaxUsers > game.UserIds.Count)
             {
                 game.UserIds.Add(request.UserId);
                 bool updated = await repository.UpdateAsync(game, cancellationToken);

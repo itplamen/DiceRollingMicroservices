@@ -4,7 +4,7 @@
 
     using OperativeService.Data.Models;
 
-    public class GetAvailableGamesQuery : IRequest<IEnumerable<Game>>
+    public class GetGamesQuery : IRequest<IEnumerable<Game>>
     {
         public string UserId { get; set; }
 

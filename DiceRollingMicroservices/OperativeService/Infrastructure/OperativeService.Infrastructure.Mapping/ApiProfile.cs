@@ -1,10 +1,9 @@
 ﻿namespace OperativeService.Infrastructure.Mapping
 {
     using AutoMapper;
-    
+
     using OperativeService.Api.Models;
     using OperativeService.Data.Models;
-    using OperativeService.Handlers.Commands.Common;
     using OperativeService.Handlers.Commands.Games;
     using OperativeService.Handlers.Commands.Play;
     using OperativeService.Handlers.Queries.Users;

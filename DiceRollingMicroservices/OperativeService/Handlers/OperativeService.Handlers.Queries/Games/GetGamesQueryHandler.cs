@@ -8,16 +8,16 @@
     using OperativeService.Data.Contracts;
     using OperativeService.Data.Models;
 
-    public class GetAvailableGamesQueryHandler : IRequestHandler<GetAvailableGamesQuery, IEnumerable<Game>>
+    public class GetGamesQueryHandler : IRequestHandler<GetGamesQuery, IEnumerable<Game>>
     {
         private readonly IRepository<Game> repository;
 
-        public GetAvailableGamesQueryHandler(IRepository<Game> repository)
+        public GetGamesQueryHandler(IRepository<Game> repository)
         {
             this.repository = repository;
         }
 
-        public async Task<IEnumerable<Game>> Handle(GetAvailableGamesQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Game>> Handle(GetGamesQuery request, CancellationToken cancellationToken)
         {
             Expression<Func<Game, bool>> filter = PredicateBuilder.True<Game>();
 
@@ -28,10 +28,8 @@
 
             if (!string.IsNullOrEmpty(request.UserId))
             {
-                filter = filter.And(x => !x.UserIds.Contains(request.UserId));
+                filter = filter.And(x => x.UserIds.Contains(request.UserId));
             }
-
-            filter = filter.And(x => x.MaxUsers < x.UserIds.Count && x.DeletedOn == null);
 
             IEnumerable<Game> games = await repository.FindAsync(filter, cancellationToken);
 

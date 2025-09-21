@@ -1,4 +1,4 @@
-﻿namespace OperativeService.Handlers.Commands.Common
+﻿namespace OperativeService.Handlers.Commands.Games
 {
     using MediatR;
 

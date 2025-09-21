@@ -16,7 +16,7 @@
         public void RegisterServices(IServiceCollection services)
         {
             services.AddAutoMapper(x => x.AddProfiles(new List<Profile>() { new ApiProfile(), new HandlersProfile() }));
-            services.AddMediatR(typeof(GetAvailableGamesQuery).Assembly, typeof(CreateGameCommand).Assembly);
+            services.AddMediatR(typeof(GetGamesQuery).Assembly, typeof(CreateGameCommand).Assembly);
         }
     }
 }

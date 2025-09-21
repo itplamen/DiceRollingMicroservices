@@ -5,15 +5,14 @@
     using System.Threading.Tasks;
 
     using AutoMapper;
-    
+
     using MediatR;
-    
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     using DiceRollingMicroservices.Common.Models.Response;
     using OperativeService.Api.Models;
-    using OperativeService.Handlers.Commands.Common;
     using OperativeService.Handlers.Commands.Games;
     using OperativeService.Handlers.Queries.Users;
     using OperativeService.Handlers.Commands.Play;

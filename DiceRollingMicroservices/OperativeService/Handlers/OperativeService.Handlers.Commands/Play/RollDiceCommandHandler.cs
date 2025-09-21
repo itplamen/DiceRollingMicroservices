@@ -1,7 +1,5 @@
 ﻿namespace OperativeService.Handlers.Commands.Play
 {
-    using AutoMapper;
-   
     using MediatR;
 
     using DiceRollingMicroservices.Common.Models.Response;
@@ -17,14 +15,12 @@
     {
         private const int ROUND_START = 1;
 
-        private readonly IMapper mapper;
         private readonly IMediator mediator;
         private readonly IRepository<Game> repository;
         private readonly IDiceRollerStrategy diceRollerStrategy;
 
-        public RollDiceCommandHandler(IMapper mapper, IMediator mediator, IRepository<Game> repository, IDiceRollerStrategy diceRollerStrategy)
+        public RollDiceCommandHandler(IMediator mediator, IRepository<Game> repository, IDiceRollerStrategy diceRollerStrategy)
         {
-            this.mapper = mapper;
             this.mediator = mediator;
             this.repository = repository;
             this.diceRollerStrategy = diceRollerStrategy;
@@ -32,7 +28,7 @@
 
         public async Task<RollDiceResponse> Handle(RollDiceCommand request, CancellationToken cancellationToken)
         {
-            var query = mapper.Map<GetAvailableGamesQuery>(request);
+            var query = new GetGamesQuery() { GameId = request.GameId };
             IEnumerable<Game> games = await mediator.Send(query);
             Game game = games.FirstOrDefault();
 
@@ -44,6 +40,11 @@
             if (game.RoundIds.Count >= game.MaxRounds)
             {
                 return new RollDiceResponse("No more rounds to play!");
+            }
+
+            if (!game.UserIds.Contains(request.UserId))
+            {
+                return new RollDiceResponse("The payer has not joined the game!");
             }
 
             int[] results = RollDice(game.DicePerUser, game.DieType);
@@ -73,7 +74,7 @@
         {
             int[] results = new int[dicePerUser];
 
-            for (int i = 1; i <= dicePerUser; i++)
+            for (int i = 0; i < dicePerUser; i++)
             {
                 results[i] = diceRollerStrategy.Roll(dieType);
             }

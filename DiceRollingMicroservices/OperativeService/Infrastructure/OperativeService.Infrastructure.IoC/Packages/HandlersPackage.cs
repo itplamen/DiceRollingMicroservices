@@ -33,7 +33,7 @@
             services.AddScoped<IRequestHandler<RollDiceCommand, RollDiceResponse>, RollDiceCommandHandler>();
             services.AddScoped<IDiceRollerStrategy, SecureDiceRollerStrategy>();
             services.AddScoped<IRequestHandler<GetUserProfileQuery, ProfileResponse>, GetUserProfileQueryHandler>();
-            services.AddScoped<IRequestHandler<GetAvailableGamesQuery, IEnumerable<Game>>, GetAvailableGamesQueryHandler>();
+            services.AddScoped<IRequestHandler<GetGamesQuery, IEnumerable<Game>>, GetGamesQueryHandler>();
             services.AddScoped<IRequestHandler<GetRoundsQuery, IEnumerable<Round>>, GetRoundsQueryHandler>();
             services.AddScoped<IRequestHandler<GetUserQuery, EntityResponse>, GetUserQueryHandler>();
             services.AddScoped<IEntityFilter<Game>, YearFilter<Game>>();

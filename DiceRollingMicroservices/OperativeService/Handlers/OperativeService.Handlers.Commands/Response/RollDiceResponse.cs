@@ -11,7 +11,7 @@
 
         public int RoundNumber { get; set; }
 
-        public IEnumerable<int> DiceRolls { get; set; }
+        public IEnumerable<int> DiceRolls { get; set; } = new List<int>();
 
         public int Total => DiceRolls.Sum();
     }
