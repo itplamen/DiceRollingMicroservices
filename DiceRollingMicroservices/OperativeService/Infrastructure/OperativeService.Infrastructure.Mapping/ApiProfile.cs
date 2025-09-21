@@ -6,6 +6,7 @@
     using OperativeService.Data.Models;
     using OperativeService.Handlers.Commands.Common;
     using OperativeService.Handlers.Commands.Games;
+    using OperativeService.Handlers.Queries.Users;
 
     public class ApiProfile : Profile
     {
@@ -20,6 +21,11 @@
 
             CreateMap<GameRequest, GameCommand>()
                 .ForMember(dest => dest.GameId, opt => opt.MapFrom(src => src.GameId));
+
+            CreateMap<ProfileRequest, GetUserProfileQuery>()
+                .ForMember(dest => dest.Year, opt => opt.MapFrom(src => src.Year))
+                .ForMember(dest => dest.Month, opt => opt.MapFrom(src => src.Month))
+                .ForMember(dest => dest.Day, opt => opt.MapFrom(src => src.Day));
         }
     }
 }
