@@ -1,28 +1,32 @@
 ﻿namespace OperativeService.Handlers.Commands.Play
 {
+    using System.Threading;
+
     using MediatR;
 
     using DiceRollingMicroservices.Common.Models.Response;
     using OperativeService.Data.Contracts;
     using OperativeService.Data.Models;
-    using OperativeService.Handlers.Commands.Play.Strategies;
     using OperativeService.Handlers.Commands.Response;
     using OperativeService.Handlers.Commands.Rounds;
     using OperativeService.Handlers.Queries.Games;
     using OperativeService.Handlers.Queries.Rounds;
+    using OperativeService.Handlers.Commands.Play.Strategies.RollDice;
 
     public class RollDiceCommandHandler : IRequestHandler<RollDiceCommand, RollDiceResponse>
     {
         private const int ROUND_START = 1;
 
         private readonly IMediator mediator;
-        private readonly IRepository<Game> repository;
+        private readonly IRepository<Game> gamesRepository;
+        private readonly IRepository<Round> roundRepository;
         private readonly IDiceRollerStrategy diceRollerStrategy;
 
-        public RollDiceCommandHandler(IMediator mediator, IRepository<Game> repository, IDiceRollerStrategy diceRollerStrategy)
+        public RollDiceCommandHandler(IMediator mediator, IRepository<Game> gamesRepository, IRepository<Round> roundRepository, IDiceRollerStrategy diceRollerStrategy)
         {
             this.mediator = mediator;
-            this.repository = repository;
+            this.gamesRepository = gamesRepository;
+            this.roundRepository = roundRepository;
             this.diceRollerStrategy = diceRollerStrategy;
         }
 

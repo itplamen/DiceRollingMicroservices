@@ -1,7 +1,7 @@
-﻿namespace OperativeService.Handlers.Commands.Play.Strategies
+﻿namespace OperativeService.Handlers.Commands.Play.Strategies.RollDice
 {
     using System.Security.Cryptography;
-    
+
     using OperativeService.Data.Models;
 
     public class SecureDiceRollerStrategy : IDiceRollerStrategy

@@ -1,4 +1,4 @@
-﻿namespace OperativeService.Handlers.Commands.Play.Strategies
+﻿namespace OperativeService.Handlers.Commands.Play.Strategies.RollDice
 {
     using OperativeService.Data.Models;
 

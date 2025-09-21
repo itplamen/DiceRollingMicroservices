@@ -1,7 +1,7 @@
 ﻿namespace OperativeService.Infrastructure.IoC.Packages
 {
     using MediatR;
-    
+
     using Microsoft.Extensions.DependencyInjection;
 
     using DiceRollingMicroservices.Common.Models.IoC;
@@ -10,7 +10,6 @@
     using OperativeService.Handlers.Commands.Common;
     using OperativeService.Handlers.Commands.Games;
     using OperativeService.Handlers.Commands.Play;
-    using OperativeService.Handlers.Commands.Play.Strategies;
     using OperativeService.Handlers.Commands.Response;
     using OperativeService.Handlers.Commands.Rounds;
     using OperativeService.Handlers.Commands.Users;
@@ -21,6 +20,7 @@
     using OperativeService.Handlers.Queries.Users.FilterDecorators.Common;
     using OperativeService.Handlers.Queries.Users.FilterDecorators.Games;
     using OperativeService.Handlers.Queries.Users.SorterDecorators.Games;
+    using OperativeService.Handlers.Commands.Play.Strategies.RollDice;
 
     public sealed class HandlersPackage : IPackage
     {
