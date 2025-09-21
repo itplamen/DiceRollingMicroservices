@@ -1,11 +1,17 @@
+using System;
 using System.Text;
+using System.Text.Json;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 
+using DiceRollingMicroservices.Common.Utils.Attributes;
 using OperativeService.Data;
 using OperativeService.Infrastructure.IoC;
 
@@ -41,6 +47,16 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddServices(builder.Configuration);
 
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
+
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ValidateModelAttribute>();
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -61,6 +77,20 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
+app.UseExceptionHandler(err =>
+{
+    err.Run(async context =>
+    {
+        context.Response.ContentType = "application/json";
+        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+
+        Exception exception = context.Features.Get<IExceptionHandlerPathFeature>()?.Error;
+        string result = JsonSerializer.Serialize(new { error = "Internal Server Error" });
+
+        await context.Response.WriteAsync(result);
+    });
+});
 
 app.MapControllers();
 

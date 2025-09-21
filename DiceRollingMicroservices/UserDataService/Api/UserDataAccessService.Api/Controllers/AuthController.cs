@@ -32,72 +32,57 @@
         [HttpPost(nameof(Register))]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
-            if (ModelState.IsValid)
-            {
-                RegisterUserCommand command = mapper.Map<RegisterUserCommand>(request);
-                BaseResponse response = await mediator.Send(command);
-                
-                if (response.IsSuccess)
-                {
-                    return Ok(response);
-                }
+            RegisterUserCommand command = mapper.Map<RegisterUserCommand>(request);
+            BaseResponse response = await mediator.Send(command);
 
-                return BadRequest(response);
+            if (response.IsSuccess)
+            {
+                return Ok(response);
             }
 
-            return BadRequest(ModelState);
+            return BadRequest(response);
         }
 
         [HttpPost(nameof(Login))]
         public async Task<IActionResult> Login([FromBody] AuthRequest request)
         {
-            if (ModelState.IsValid)
+            LoginUserCommand command = mapper.Map<LoginUserCommand>(request);
+            TokenResponse response = await mediator.Send(command);
+
+            if (response.IsSuccess)
             {
-                LoginUserCommand command = mapper.Map<LoginUserCommand>(request);
-                TokenResponse response = await mediator.Send(command);
-
-                if (response.IsSuccess)
-                {
-                    return Ok(response);
-                }
-
-                return Unauthorized(response);
+                return Ok(response);
             }
 
-            return BadRequest(ModelState);
+            return Unauthorized(response);
         }
 
         [HttpPost(nameof(RefreshToken))]
         public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest request)
         {
-            if (ModelState.IsValid)
+            CreateRefreshTokenCommand command = mapper.Map<CreateRefreshTokenCommand>(request);
+            TokenResponse response = await mediator.Send(command);
+
+            if (response.IsSuccess)
             {
-                CreateRefreshTokenCommand command = mapper.Map<CreateRefreshTokenCommand>(request);
-                TokenResponse response = await mediator.Send(command);
-
-                if (response.IsSuccess)
-                {
-                    return Ok(response);
-                }
-
-                return Unauthorized(response);
+                return Ok(response);
             }
 
-            return BadRequest(ModelState);
+            return Unauthorized(response);
         }
 
         [HttpPost(nameof(Logout))]
         public async Task<IActionResult> Logout([FromBody] RefreshTokenRequest request)
         {
-            if (ModelState.IsValid)
-            {
-                LogoutUserCommand command = mapper.Map<LogoutUserCommand>(request);
-                BaseResponse response = await mediator.Send(command);
+            LogoutUserCommand command = mapper.Map<LogoutUserCommand>(request);
+            BaseResponse response = await mediator.Send(command);
 
+            if (response.IsSuccess)
+            {
                 return Ok(response);
             }
 
-            return BadRequest(ModelState);
+            return Unauthorized(response);
         }
     }
 }

@@ -63,11 +63,6 @@
             where TRequest : class
             where TResponse : IResponse
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             int externalUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             EntityResponse userResponse = await mediator.Send(new GetUserQuery() { ExternalId = externalUserId });
 
