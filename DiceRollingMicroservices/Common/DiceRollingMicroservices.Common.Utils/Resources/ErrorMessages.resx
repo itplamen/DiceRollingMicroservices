@@ -123,6 +123,9 @@
   <data name="EmailLength" xml:space="preserve">
     <value>{0} must be between {2} and {1} characters long</value>
   </data>
+  <data name="MaxRange" xml:space="preserve">
+    <value>{0} must be in the range [{1} - {2}]</value>
+  </data>
   <data name="PasswordCharacters" xml:space="preserve">
     <value>{0} must contain at least 6 characters long, 1 uppercase and 1 digit</value>
   </data>

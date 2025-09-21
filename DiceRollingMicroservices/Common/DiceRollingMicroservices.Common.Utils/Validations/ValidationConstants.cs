@@ -15,5 +15,9 @@
         public const string PASSWORD_REGEX = "^(?=.*[A-Z])(?=.*\\d).{6,}$";
 
         public const int FULL_NAME_MAX_LENGTH = 50;
+
+        public const int MIN_VALUE_NUMBER = 1;
+
+        public const int MAX_VALUE_NUMBER = 10;
     }
 }

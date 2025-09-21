@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\DiceRollingMicroservices.Common.Models\DiceRollingMicroservices.Common.Models.csproj" />
+    <ProjectReference Include="..\..\..\Common\DiceRollingMicroservices.Common.Utils\DiceRollingMicroservices.Common.Utils.csproj" />
   </ItemGroup>
 
 </Project>

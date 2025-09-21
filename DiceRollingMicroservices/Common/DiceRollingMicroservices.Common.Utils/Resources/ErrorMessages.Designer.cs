@@ -79,6 +79,15 @@ namespace DiceRollingMicroservices.Common.Utils.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} must be in the range [{1} - {2}].
+        /// </summary>
+        public static string MaxRange {
+            get {
+                return ResourceManager.GetString("MaxRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} must contain at least 6 characters long, 1 uppercase and 1 digit.
         /// </summary>
         public static string PasswordCharacters {

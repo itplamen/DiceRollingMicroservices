@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\OperativeService\Data\OperativeService.Data.Models\OperativeService.Data.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Resources\ErrorMessages.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
