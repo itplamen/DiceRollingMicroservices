@@ -31,12 +31,6 @@
             this.mediator = mediator;
         }
 
-        //[HttpGet(nameof(Get))]
-        //public async Task<IActionResult> Get()
-        //{
-
-        //}
-
         [HttpPost(nameof(Create))]
         public async Task<IActionResult> Create([FromBody] CreateGameRequest request)
         {

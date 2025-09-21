@@ -20,8 +20,8 @@
             IEnumerable<User> users = await repository.FindAsync(x => x.ExternalId == request.ExternalId, cancellationToken);
             User user = users.FirstOrDefault();
 
-            if (user != null) 
-            { 
+            if (user != null)
+            {
                 return new EntityResponse() { Id = user.Id };
             }
 
