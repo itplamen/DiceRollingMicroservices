@@ -9,7 +9,7 @@
     {
         [Required(
            ErrorMessageResourceType = typeof(ErrorMessages),
-           ErrorMessageResourceName = "EmailRequired")]
+           ErrorMessageResourceName = "PropRequired")]
         [StringLength(
            ValidationConstants.EMAIL_MAX_LENGTH,
            MinimumLength = ValidationConstants.EMAIL_MIN_LENGTH,
@@ -23,7 +23,7 @@
 
         [Required(
             ErrorMessageResourceType = typeof(ErrorMessages),
-            ErrorMessageResourceName = "PasswordRequired")]
+            ErrorMessageResourceName = "PropRequired")]
         [StringLength(
             ValidationConstants.PASSWORD_MAX_LENGTH,
             MinimumLength = ValidationConstants.PASSWORD_MIN_LENGTH,

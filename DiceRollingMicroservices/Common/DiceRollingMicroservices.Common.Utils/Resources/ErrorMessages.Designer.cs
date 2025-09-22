@@ -108,9 +108,9 @@ namespace DiceRollingMicroservices.Common.Utils.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is required.
         /// </summary>
-        public static string PasswordRequired {
+        public static string PropRequired {
             get {
-                return ResourceManager.GetString("PasswordRequired", resourceCulture);
+                return ResourceManager.GetString("PropRequired", resourceCulture);
             }
         }
     }
