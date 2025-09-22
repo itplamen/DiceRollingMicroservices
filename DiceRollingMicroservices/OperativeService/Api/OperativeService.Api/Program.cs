@@ -1,19 +1,18 @@
-using System;
-using System.Text;
-using System.Text.Json;
-
+using DiceRollingMicroservices.Common.Utils.Attributes;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-
-using DiceRollingMicroservices.Common.Utils.Attributes;
 using OperativeService.Data;
 using OperativeService.Infrastructure.IoC;
+using System;
+using System.Text;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,6 +56,11 @@ builder.Services.AddControllers(options =>
     options.Filters.Add<ValidateModelAttribute>();
 });
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(8080);
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -73,11 +77,6 @@ using (var scope = app.Services.CreateScope())
 
 //app.UseHttpsRedirection();
 
-app.UseRouting();
-app.UseAuthentication();
-app.UseAuthorization();
-app.MapControllers();
-
 app.UseExceptionHandler(err =>
 {
     err.Run(async context =>
@@ -91,6 +90,13 @@ app.UseExceptionHandler(err =>
         await context.Response.WriteAsync(result);
     });
 });
+
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllers();
+
+
 
 app.MapControllers();
 

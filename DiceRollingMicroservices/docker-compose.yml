@@ -1,0 +1,106 @@
+version: "3.9"
+
+services:
+  # SQL Server
+  sqlserver:
+      image: mcr.microsoft.com/mssql/server:2022-latest
+      container_name: sqlserver
+      environment:
+        - ACCEPT_EULA=Y
+        - SA_PASSWORD=YourStrong!Passw0rd
+      ports:
+        - "1433:1433"
+      volumes:
+        - sqlserver_data:/var/opt/mssql
+      networks:
+        - backend
+
+  # MongoDB
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --username admin --password secret --eval 'db.adminCommand(\"ping\")' || exit 1"]
+      interval: 10s
+      retries: 5
+      start_period: 10s
+
+  # RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 5s
+      retries: 10
+      start_period: 10s
+
+  # UserDataAccessService
+  userdataservice:
+      build:
+        context: .
+        dockerfile: UserDataService/Api/UserDataAccessService.Api/Dockerfile
+      container_name: userdataservice
+      depends_on:
+        - sqlserver   # just list the service, remove 'condition'
+      environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - ConnectionStrings__Default=Server=sqlserver;Database=UserDataAccessServiceDb;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;
+        - RabbitMQ__Host=rabbitmq
+        - RabbitMQ__Port=5672
+        - RabbitMQ__Exchange=users.notifications
+        - RabbitMQ__Queue=users.notifications-queue
+      ports:
+        - "5001:8080"
+      networks:
+        - backend
+
+  # OperativeService
+  operativeservice:
+    build:
+      context: .
+      dockerfile: OperativeService/Api/OperativeService.Api/Dockerfile
+    container_name: operativeservice
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - MongoDb__Host=mongodb://admin:secret@mongodb:27017
+      - MongoDb__DatabaseName=OperativeServiceDb
+      - RabbitMQ__Host=rabbitmq
+      - RabbitMQ__Port=5672
+      - RabbitMQ__Exchange=users.notifications
+      - RabbitMQ__Queue=users.notifications-queue
+    ports:
+      - "5002:8080"
+    networks:
+      - backend
+
+volumes:
+  sqlserver_data:
+  mongodb_data:
+
+networks:
+  backend:
+    driver: bridge

@@ -1,12 +1,12 @@
+using DiceRollingMicroservices.Common.Utils.Attributes;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
-using DiceRollingMicroservices.Common.Utils.Attributes;
 using UserDataAccessService.Data;
 using UserDataAccessService.Data.Models;
 using UserDataAccessService.Infrastructure.IoC;
@@ -45,13 +45,25 @@ builder.Services.AddControllers(options =>
     options.Filters.Add<ValidateModelAttribute>();
 });
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(8080); // crucial for Docker
+});
+
+
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<UserDataServiceDbContext>();
+    db.Database.Migrate();  // <-- this ensures DB & tables are created
+}
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+} 
 
 app.UseHttpsRedirection();
 
