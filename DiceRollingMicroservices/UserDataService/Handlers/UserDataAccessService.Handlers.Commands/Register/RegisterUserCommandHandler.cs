@@ -36,6 +36,7 @@
                 string filePath = await mediator.Send(new UploadImageCommand() { Image = request.Image });
 
                 User newUser = mapper.Map<User>(request);
+                newUser.CreatedOn = DateTime.UtcNow;
                 newUser.ImageUrl = filePath;
 
                 IdentityResult result = await userManager.CreateAsync(newUser, request.Password);

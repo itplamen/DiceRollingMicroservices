@@ -12,7 +12,7 @@ using UserDataAccessService.Data;
 namespace UserDataAccessService.Data.Migrations
 {
     [DbContext(typeof(UserDataServiceDbContext))]
-    [Migration("20250918180425_InitialCreate")]
+    [Migration("20250922225229_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -257,10 +257,6 @@ namespace UserDataAccessService.Data.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
