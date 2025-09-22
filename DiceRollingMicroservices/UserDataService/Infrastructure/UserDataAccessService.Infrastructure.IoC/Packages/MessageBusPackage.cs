@@ -2,13 +2,14 @@
 {
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-
+    using Microsoft.Extensions.Logging;
+ 
     using RabbitMQ.Client;
 
     using DiceRollingMicroservices.Common.Models.IoC;
+    using DiceRollingMicroservices.MessageBus.Models;
     using DiceRollingMicroservices.MessageBus.Producer;
     using DiceRollingMicroservices.MessageBus.Producer.Contracts;
-    using DiceRollingMicroservices.MessageBus.Models;
 
     public sealed class MessageBusPackage : IPackage
     {
@@ -24,10 +25,14 @@
             services.AddSingleton<IMessageBusClient<UserMsg>>(sp =>
             {
                 var connectionFactory = sp.GetRequiredService<IConnectionFactory>();
-                var exchangeName = configuration["RabbitMQ:Exchange"];
+                string exchangeName = configuration["RabbitMQ:Exchange"];
 
-                return new MessageBusClient<UserMsg>(connectionFactory, exchangeName);
+                var concreteClient = new MessageBusClient<UserMsg>(connectionFactory, exchangeName);
+                var logger = sp.GetRequiredService<ILogger<MessageBusClientDecorator<UserMsg>>>();
+
+                return new MessageBusClientDecorator<UserMsg>(connectionFactory, exchangeName, concreteClient, logger);
             });
+
             services.AddSingleton<IConnectionFactory, ConnectionFactory>(x =>
             {
                 return new ConnectionFactory

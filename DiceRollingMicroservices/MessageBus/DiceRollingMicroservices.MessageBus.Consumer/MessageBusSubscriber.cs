@@ -26,6 +26,21 @@
             this.queueName = queueName;
         }
 
+        public override void Dispose()
+        {
+            if (channel?.IsOpen ?? false)
+            {
+                channel.CloseAsync().GetAwaiter().GetResult();
+            }
+
+            if (connection?.IsOpen ?? false)
+            {
+                connection.CloseAsync().GetAwaiter().GetResult();
+            }
+
+            base.Dispose();
+        }
+
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             if (connection == null || !connection.IsOpen)
@@ -82,20 +97,6 @@
             return Task.CompletedTask;
         }
 
-        public override void Dispose()
-        {
-            if (channel?.IsOpen ?? false)
-            {
-                channel.CloseAsync().GetAwaiter().GetResult();
-            }
-
-            if (connection?.IsOpen ?? false)
-            {
-                connection.CloseAsync().GetAwaiter().GetResult();
-            }
-
-
-            base.Dispose();
-        }
+        
     }
 }
