@@ -1,6 +1,8 @@
 ﻿namespace UserDataAccessService.Handlers.Commands.Register
 {
     using MediatR;
+    
+    using Microsoft.AspNetCore.Http;
 
     using DiceRollingMicroservices.Common.Models.Response;
 
@@ -14,6 +16,6 @@
 
         public string Password { get; set; }
 
-        public string ImageUrl { get; set; }
+        public IFormFile Image { get; set; }
     }
 }

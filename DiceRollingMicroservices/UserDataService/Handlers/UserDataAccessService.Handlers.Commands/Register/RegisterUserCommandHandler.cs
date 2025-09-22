@@ -10,16 +10,19 @@
     using DiceRollingMicroservices.MessageBus.Models;
     using DiceRollingMicroservices.MessageBus.Producer.Contracts;
     using UserDataAccessService.Data.Models;
+    using UserDataAccessService.Handlers.Commands.Images;
 
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, BaseResponse>
     {
         private readonly IMapper mapper;
+        private readonly IMediator mediator;
         private readonly UserManager<User> userManager;
         private readonly IMessageBusClient<UserMsg> busClient;
 
-        public RegisterUserCommandHandler(IMapper mapper, UserManager<User> userManager, IMessageBusClient<UserMsg> busClient)
+        public RegisterUserCommandHandler(IMapper mapper, IMediator mediator, UserManager<User> userManager, IMessageBusClient<UserMsg> busClient)
         {
             this.mapper = mapper;
+            this.mediator = mediator;
             this.userManager = userManager;
             this.busClient = busClient;
         }
@@ -30,9 +33,12 @@
 
             if (user == null)
             {
-                User newUser = mapper.Map<User>(request);
-                IdentityResult result = await userManager.CreateAsync(newUser, request.Password);
+                string filePath = await mediator.Send(new UploadImageCommand() { Image = request.Image });
 
+                User newUser = mapper.Map<User>(request);
+                newUser.ImageUrl = filePath;
+
+                IdentityResult result = await userManager.CreateAsync(newUser, request.Password);
                 if (result.Succeeded)
                 {
                     UserMsg userMsg = mapper.Map<UserMsg>(newUser);

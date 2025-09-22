@@ -7,6 +7,7 @@
     using DiceRollingMicroservices.Common.Models.IoC;
     using DiceRollingMicroservices.Common.Models.Response;
     using UserDataAccessService.Data.Models;
+    using UserDataAccessService.Handlers.Commands.Images;
     using UserDataAccessService.Handlers.Commands.Login;
     using UserDataAccessService.Handlers.Commands.Logout;
     using UserDataAccessService.Handlers.Commands.Register;
@@ -25,6 +26,7 @@
             services.AddScoped<IRequestHandler<LoginUserCommand, TokenResponse>, LoginUserCommandHandler>();
             services.AddScoped<IRequestHandler<CreateRefreshTokenCommand, TokenResponse>, CreateRefreshTokenCommandHandler>();
             services.AddScoped<IRequestHandler<LogoutUserCommand, BaseResponse>, LogoutUserCommandHandler>();
+            services.AddScoped<IRequestHandler<UploadImageCommand, string>, UploadImageCommandHandler>();
         }
     }
 }

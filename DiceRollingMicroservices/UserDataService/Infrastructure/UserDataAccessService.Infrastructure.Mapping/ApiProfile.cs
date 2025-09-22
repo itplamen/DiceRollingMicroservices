@@ -17,7 +17,7 @@
                 .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password))
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
                 .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName))
-                .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src => src.ImageUrl));
+                .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Image));
 
             CreateMap<AuthRequest, LoginUserCommand>()
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))

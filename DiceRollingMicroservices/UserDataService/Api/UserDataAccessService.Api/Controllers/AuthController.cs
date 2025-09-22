@@ -30,7 +30,7 @@
         }
 
         [HttpPost(nameof(Register))]
-        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+        public async Task<IActionResult> Register([FromForm] RegisterRequest request)
         {
             RegisterUserCommand command = mapper.Map<RegisterUserCommand>(request);
             BaseResponse response = await mediator.Send(command);
