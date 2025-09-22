@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using OperativeService.Data;
 using OperativeService.Infrastructure.IoC;
 using System;
@@ -21,7 +22,19 @@ builder.Services.AddSingleton<DbInitializer>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "OperativeService API",
+        Version = "v1"
+    });
+    c.AddServer(new OpenApiServer
+    {
+        Url = "/operations",
+        Description = "API Gateway path"
+    });
+});
 
 builder.Services.AddAuthentication(options =>
 {
@@ -75,7 +88,7 @@ using (var scope = app.Services.CreateScope())
     dbInitializer.Init();
 }
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.UseExceptionHandler(err =>
 {
@@ -94,10 +107,6 @@ app.UseExceptionHandler(err =>
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-app.MapControllers();
-
-
-
 app.MapControllers();
 
 app.Run();
