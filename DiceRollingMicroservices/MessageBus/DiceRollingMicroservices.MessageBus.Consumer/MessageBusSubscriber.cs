@@ -47,13 +47,10 @@
             {
                 await Init();
             }
-
-            Console.WriteLine("Listenning ...");
  
             stoppingToken.ThrowIfCancellationRequested();
 
             var consumer = new AsyncEventingBasicConsumer(channel);
-
             consumer.ReceivedAsync += async (ModuleHandle, args) =>
             {
                 try
@@ -65,8 +62,6 @@
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error processing message: {ex.Message}");
-
                     await channel.BasicNackAsync(args.DeliveryTag, multiple: false, requeue: true);
                 }
             };
@@ -81,7 +76,7 @@
 
             await channel.ExchangeDeclareAsync(exchange: exchangeName, type: ExchangeType.Fanout, durable: true);
 
-            connection.ConnectionShutdownAsync += RabbitMQ_ConnectionShutdown;
+            connection.ConnectionShutdownAsync += OnConnectionShutdown;
 
             var queue = await channel.QueueDeclareAsync(
                queue: queueName,
@@ -92,11 +87,6 @@
             await channel.QueueBindAsync(queue.QueueName, exchangeName, "");
         }
 
-        private Task RabbitMQ_ConnectionShutdown(object sender, ShutdownEventArgs e)
-        {
-            return Task.CompletedTask;
-        }
-
-        
+        private Task OnConnectionShutdown(object sender, ShutdownEventArgs e) => Task.CompletedTask;
     }
 }
