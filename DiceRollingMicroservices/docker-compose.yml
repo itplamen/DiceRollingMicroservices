@@ -72,6 +72,8 @@ services:
         - "5001:8080"
       networks:
         - backend
+      volumes:
+        - ./UserDataService/Api/UserDataAccessService.Api/wwwroot/images:/app/wwwroot/images
 
   # OperativeService
   operativeservice:
