@@ -7,19 +7,17 @@
     {
         public IOrderedEnumerable<GameResponse> Sort(IEnumerable<GameResponse> games, IEnumerable<SortOptions> sortBy, bool desc)
         {
-            if (sortBy.Contains(SortOptions.SumOfDice))
+            foreach (var game in games)
             {
-                Func<GameResponse, int> filter = x => x.Rounds.SelectMany(y => y.DiceRolls).Sum();
-
-                if (desc)
+                if (sortBy.Contains(SortOptions.SumOfDice) && game.Rounds != null)
                 {
-                    return games.OrderByDescending(filter);
+                    game.Rounds = desc
+                        ? game.Rounds.OrderByDescending(x => x.Total).ToList()
+                        : game.Rounds.OrderBy(x => x.Total).ToList();
                 }
-
-                return games.OrderBy(filter);
             }
 
-            return games.OrderBy(x => 0);
+            return games.OrderBy(g => g.Id);
         }
     }
 }

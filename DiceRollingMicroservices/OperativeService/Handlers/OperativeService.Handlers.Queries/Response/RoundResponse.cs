@@ -5,5 +5,7 @@
         public int RoundNumber { get; set; }
 
         public IEnumerable<int> DiceRolls { get; set; }
+
+        public int Total => DiceRolls.Sum();
     }
 }
