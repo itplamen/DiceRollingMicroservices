@@ -80,10 +80,15 @@
 
                 IEnumerable<GameResponse> sorted = sorter.Sort(mappedGames, request.Sort, request.Desc);
 
+                IEnumerable<GameResponse> pagedGames = sorted
+                    .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize)
+                    .ToList();
+
                 return new ProfileResponse()
                 {
                     User = mapper.Map<UserResponse>(user),
-                    Games = sorted
+                    Games = pagedGames
                 };
             }
 

@@ -28,7 +28,11 @@
             CreateMap<ProfileRequest, GetUserProfileQuery>()
                 .ForMember(dest => dest.Year, opt => opt.MapFrom(src => src.Year))
                 .ForMember(dest => dest.Month, opt => opt.MapFrom(src => src.Month))
-                .ForMember(dest => dest.Day, opt => opt.MapFrom(src => src.Day));
+                .ForMember(dest => dest.Day, opt => opt.MapFrom(src => src.Day))
+                .ForMember(dest => dest.Sort, opt => opt.MapFrom(src => src.Sort))
+                .ForMember(dest => dest.Desc, opt => opt.MapFrom(src => src.Desc))
+                .ForMember(dest => dest.PageNumber, opt => opt.MapFrom(src => src.PageNumber))
+                .ForMember(dest => dest.PageSize, opt => opt.MapFrom(src => src.PageSize));
         }
     }
 }
