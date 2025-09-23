@@ -2,6 +2,8 @@
 
 Practical assignment from Nemetschek (ProductLab team) for the role of .NET Developer
 
+A dice-rolling game implemented with a microservices architecture, using RabbitMQ as a message bus to synchronize databases
+
 ![Alt Text](assets/Microservice_Architecture.png)
 
 ## Technologies
