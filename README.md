@@ -63,12 +63,12 @@ Volume dicerollingmicroservices_mongodb_data      Removed
 Network dicerollingmicroservices_backend          Removed
 ```
 
-# URLs:
+## URLs:
 RabbitMQ: http://localhost:15672/ <br />
 UserDataAccessService API: http://localhost/users/swagger/index.html <br />
 OperativeService API: http://localhost/operations/swagger/index.html
 
-# Examples
+## Examples
 UserDataAccessService: http://localhost/users/api/Auth/ <br />
 - `POST /Register` - Ccreates a new user. The data is stored in the SQL database. A RabbitMQ message is published to the users.notifications Fanout Exchange. MongoDB is updated asynchronously with the new user data. <br />
 - `POST /Login` - Authenticates a user. Issues a JWT access token + refresh token <br />
